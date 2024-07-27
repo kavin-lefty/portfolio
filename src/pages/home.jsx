@@ -206,7 +206,7 @@ export function Home() {
           </div>
           <div className="button my-8">
             <button className="hover:border-[#4070f4] hover:bg-[#fff] hover:text-[#4070f4]">
-              Hire Me
+              <a href="mailto:kavinkumarsksi@gmail.com"> Hire Me</a>
             </button>
           </div>
         </div>
@@ -235,7 +235,10 @@ export function Home() {
               </p>
               <div className="button my-4">
                 <button className="hover:border-[#4070f4] hover:bg-[#fff] hover:text-[#4070f4]">
-                 <a href="https://kavin-kumar.netlify.app/src/assets/Kavin%20Kumar_CV_.pdf" target="_blank"> Download CV</a> 
+                  <a href="src/assets/Kavin%20Kumar_CV_.pdf" target="_blank">
+                    {" "}
+                    Download CV
+                  </a>
                 </button>
               </div>
             </div>
@@ -369,7 +372,13 @@ export function Home() {
             </p>
             <div className="button my-8">
               <button className="hover:border-[#4070f4] hover:bg-[#fff] hover:text-[#4070f4]">
-                Let's Chat
+                <a
+                  href="https://api.whatsapp.com/send/?phone=8012142585&text&type=phone_number&app_absent=0"
+                  target="_blank"
+                >
+                  {" "}
+                  Let's Chat
+                </a>
               </button>
             </div>
           </div>
