@@ -373,7 +373,7 @@ export function Home() {
             <div className="button my-8">
               <button className="hover:border-[#4070f4] hover:bg-[#fff] hover:text-[#4070f4]">
                 <a
-                  href="https://api.whatsapp.com/send/?phone=8012142585&text&type=phone_number&app_absent=0"
+                  href="https://api.whatsapp.com/send/?phone=+918012142585&text&type=phone_number&app_absent=0"
                   target="_blank"
                 >
                   {" "}
