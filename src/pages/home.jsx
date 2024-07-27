@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";
+import download from "downloadjs";
 
 export function Home() {
   const [navActive, setNavActive] = useState(false);
@@ -75,14 +76,29 @@ export function Home() {
 
   const PDF_URL = "http://localhost:5173/Kavin Kumar_CV_.pdf";
 
-  const resumeDownload = (url) => {
-    const fileName = url.split("/").pop();
-    const aTag = document.createElement("a");
-    aTag.href = url;
-    aTag.setAttribute("download", fileName);
-    document.body.appendChild(aTag);
-    aTag.click();
-    aTag.remove();
+  // const resumeDownload = (url) => {
+  //   const fileName = url.split("/").pop();
+  //   const aTag = document.createElement("a");
+  //   aTag.href = url;
+  //   aTag.setAttribute("download", fileName);
+  //   document.body.appendChild(aTag);
+  //   aTag.click();
+  //   aTag.remove();
+  // };
+
+  const downloadCV = async () => {
+    const url = `https://www.googleapis.com/drive/v3/files/18iqEleiqc_MdfT278McQD9tSwxEz2pDQJVcPijR3QMs/export?key=AIzaSyAvOvppum3RYo-Zu9V6Btd3jyA-0-H_YLM`;
+
+    const response = await axios.get(url, {
+      responseType: "blob",
+      params: { mimetype: "application/pdf" },
+    });
+
+    try {
+      download(response.data, "Kavin kumar_CV.pdf", "application/pdf");
+    } catch (error) {
+      console.log("error getting file");
+    }
   };
 
   return (
@@ -220,7 +236,7 @@ export function Home() {
               <div className="button my-4">
                 <button
                   className="hover:border-[#4070f4] hover:bg-[#fff] hover:text-[#4070f4]"
-                  onClick={() => resumeDownload(PDF_URL)}
+                  onClick={downloadCV}
                 >
                   Download CV
                 </button>
@@ -370,8 +386,6 @@ export function Home() {
           </span>
         </div>
       </footer>
-
-      <script src="script.js"></script>
     </>
   );
 }
