@@ -234,11 +234,8 @@ export function Home() {
                 exciting projects.
               </p>
               <div className="button my-4">
-                <button
-                  className="hover:border-[#4070f4] hover:bg-[#fff] hover:text-[#4070f4]"
-                  onClick={downloadCV}
-                >
-                  Download CV
+                <button className="hover:border-[#4070f4] hover:bg-[#fff] hover:text-[#4070f4]">
+                 <a href="src/assets/Kavin Kumar_CV_.pdf" target="_blank"> Download CV</a> 
                 </button>
               </div>
             </div>
