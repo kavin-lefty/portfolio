@@ -101,6 +101,23 @@ export function Home() {
     }
   };
 
+  function getTotalYearsAndMonthsFromSept2022() {
+    const start = new Date(2022, 8); // September is month 8 (0-indexed)
+    const now = new Date();
+
+    let years = now.getFullYear() - start.getFullYear();
+    let months = now.getMonth() - start.getMonth();
+
+    if (months < 0) {
+      years -= 1;
+      months += 12;
+    }
+
+    return { years, months };
+  }
+
+  const duration = getTotalYearsAndMonthsFromSept2022();
+
   return (
     <>
       <div
@@ -255,16 +272,22 @@ export function Home() {
             <div className="text w-2/4">
               <div className="topic">Skills Reflects Our Knowledge</div>
               <p className="text-justify text-[#0E2431]">
-                React.js, Node.js, MongoDB, Express.js, Javascript, TailwindCSS,
-                Git, RESTfull API's, Collaboration. These skills enable Me to
-                create robust, efficient, and scalable web applications from
-                start to finish.
+                React.js, Node.js, MongoDB, Express.js, Javascript, TypeScript,
+                TailwindCSS, Git, RESTfull API's, Collaboration. These skills
+                enable Me to create robust, efficient, and scalable web
+                applications from start to finish.
               </p>
               <div className="experience flex items-center mx-2.5">
-                <div className="num text-[#0E2431] text-8xl">8</div>
-                <div className="exp text-[#0E2431] ml-5 mx-2 text-lg font-medium">
-                  months Of <br />
-                  Experience
+                <div className="num text-[#0E2431] flex items-center space-x-2">
+                  <span className="text-8xl">{duration?.years}</span>
+                  <span className="text-3xl">Years</span>
+                </div>
+                <div className="exp text-[#0E2431] ml-5 mx-2 text-lg font-medium flex items-center">
+                  <span className="text-8xl">{duration?.months}</span>
+                  <span>
+                    months Of <br />
+                    Experience
+                  </span>
                 </div>
               </div>
             </div>
