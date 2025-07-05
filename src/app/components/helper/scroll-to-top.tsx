@@ -8,26 +8,32 @@ const DEFAULT_BTN_CLS =
 const SCROLL_THRESHOLD = 50;
 
 const ScrollToTop = () => {
-  const [btnCls, setBtnCls] = useState(DEFAULT_BTN_CLS);
+  const [btnCls, setBtnCls] = useState(DEFAULT_BTN_CLS + " hidden");
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > SCROLL_THRESHOLD) {
-        setBtnCls(DEFAULT_BTN_CLS.replace(" hidden", ""));
+        setBtnCls(DEFAULT_BTN_CLS);
       } else {
         setBtnCls(DEFAULT_BTN_CLS + " hidden");
       }
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // ✅ OK: passive allowed here
+    const opts: AddEventListenerOptions = { passive: true };
+    window.addEventListener("scroll", handleScroll, opts);
+
     return () => {
-      window.removeEventListener("scroll", handleScroll, { passive: true });
+      // ✅ No passive here (not part of EventListenerOptions)
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  const onClickBtn = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
   return (
-    <button className={btnCls} onClick={onClickBtn}>
+    <button
+      className={btnCls}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    >
       <FaArrowUp />
     </button>
   );
